@@ -24,11 +24,15 @@ const SingleProduct = () => {
       }
     };
     fetchSingleProduct();
-  }, [params.id, navigate]);
+  }, [params.id]);
 
   useEffect(() => {
+  
     const itemExist = newcart.find((element) => element.id === product.id);
-    setIsAdding(!!itemExist);
+    if(itemExist){
+    console.log("This item already exist : ",itemExist);
+      setIsAdding(true);
+    }
   }, [product.id, newcart]);
 
   const addtoCart = (e, product) => {

@@ -4,37 +4,29 @@ import CartContext from "../CartContext";
 
 const Product = ({ data }) => {
   const [isAdding, setIsAdding] = useState(false);
-      const {newcart,setNewCart} = useContext(CartContext)
+  const {newcart,setNewCart} = useContext(CartContext)
 
       useEffect(() => {
-        // Check if the item is already in the cart
-        const cart = JSON.parse(localStorage.getItem("cart")) || [...newcart];
-        const itemExist = cart.find((element) => element.id === data.id);
+        const itemExist = newcart.find((element) => element.id === data.id);
         if (itemExist) {
-          setIsAdding(true); // Update button state if item exists in cart
-          console.log(cart);
+          setIsAdding(true); 
         }
-      }, [newcart]); // Include newcart in the dependency array
+      }, [newcart]); 
       
 
-  const addToCart = (e, data) => {
-    e.preventDefault();
-    let cart = JSON.parse(localStorage.getItem("cart")) || [...newcart];
-    let itemExist = cart.find((element) => element.id === data.id);
-    if (itemExist) {
-      const updatedCart=cart.filter((element) => element.id !== data.id);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      console.log("item removed from localstorage")
-      setIsAdding(false);
-      setNewCart(updatedCart);
-      return; // Exit early if item already exists in cart
-    } else {
-      let newCart = [...cart, data];
-      localStorage.setItem("cart", JSON.stringify(newCart));
-      setIsAdding(true); // Update button state after adding to cart
-      setNewCart(newCart);
-    }
-  };
+      const addtoCart = (e, product) => {
+        e.preventDefault();
+        let cart = [...newcart];
+        if (cart.find((element) => element.id === product.id)) {
+          const updatedCart = cart.filter((element) => element.id !== product.id);
+          setNewCart(updatedCart);
+          setIsAdding(false);
+        } else {
+          let newCart = [...cart, product];
+          setNewCart(newCart);
+          setIsAdding(true);
+        }
+      };
 
   return (
     <Link to={`/products/${data.id}`}>
@@ -63,7 +55,7 @@ const Product = ({ data }) => {
               <span>₹{`${data.price}.00`}</span>
               <button
                 onClick={(e) => {
-                  addToCart(e, data);
+                  addtoCart(e, data);
                 }}
                 className={`${
                   isAdding ? "bg-green-500" : "bg-yellow-500"

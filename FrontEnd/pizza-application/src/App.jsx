@@ -24,7 +24,6 @@ function App() {
     localStorage.setItem("cart", JSON.stringify(newcart));
   }, [newcart]);
 
-  
   const router = createBrowserRouter([
     {
       path: "/",
@@ -39,8 +38,8 @@ function App() {
       path: "/products",
       element: (
         <>
-          <Navbar/>
-          <Products/> <Footer/>
+          <Navbar />
+          <Products /> <Footer />
         </>
       ),
     },
@@ -73,7 +72,7 @@ function App() {
   ]);
 
   return (
-  <CartContext.Provider value= {{newcart,setNewCart}}>
+    <CartContext.Provider value={{ newcart, setNewCart }}>
       <RouterProvider router={router} />
     </CartContext.Provider>
   );
