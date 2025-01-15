@@ -2,11 +2,14 @@ package com.pizzaOrdering.exception;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class PizzaNotFoundException extends RuntimeException{
+@SuppressWarnings("serial")
+public class PizzaNotFoundException extends RuntimeException {
 
-	private String id;
-	
-	
-	
+	private String resourceId;
+
+	public PizzaNotFoundException(String resourceId) {
+		super("Pizza not found with id : " + resourceId);
+		this.resourceId = resourceId;
+	}
+
 }

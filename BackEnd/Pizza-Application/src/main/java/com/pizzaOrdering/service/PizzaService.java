@@ -3,11 +3,16 @@ package com.pizzaOrdering.service;
 import java.util.List;
 
 import com.pizzaOrdering.model.Pizza;
-import com.pizzaOrdering.payload.PizzaRequest;
+import com.pizzaOrdering.model.Type;
+import com.pizzaOrdering.payload.PizzaDTO;
 
 public interface PizzaService {
 
-	public Pizza getSinglePizza(String id);
-	public List< Pizza> getAllPizza();
-	public Pizza addPizza(PizzaRequest items);
+	public PizzaDTO getSinglePizza(String id);
+	public List<PizzaDTO> getAllPizza();
+	public PizzaDTO addPizza(PizzaDTO pizzadto);
+	public String deletePizzaByPizzaId(String pizzaId);
+	public String updatePizzaByPizzaId(String pizzaId, PizzaDTO pizzaDTO);
+    public List<PizzaDTO> searchPizzaByType(Type type);
+    public List<PizzaDTO> searchPizzaByPrizeLessThan(int prize);
 }

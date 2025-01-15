@@ -6,13 +6,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pizzaOrdering</groupId>
 	<artifactId>Pizza-Application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Pizza Application Backend</name>
 	<description>Pizza Application Backend Application</description>
+	<url>www.mukeshjha.com</url>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -25,7 +26,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -48,7 +53,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -64,6 +68,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>Pizza-Application</finalName>
 	</build>
-
 </project>
